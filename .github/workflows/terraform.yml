@@ -52,8 +52,8 @@ jobs:
       run: |
         CLIENT_ID=$(aws ssm get-parameter --name "/CodeBuild/WIZ_CLIENT_ID" --with-decryption --query "Parameter.Value" --output text)
         CLIENT_SECRET=$(aws ssm get-parameter --name "/CodeBuild/WIZ_CLIENT_SECRET" --with-decryption --query "Parameter.Value" --output text)
-        #echo "CLIENT_ID=$CLIENT_ID" >> $GITHUB_ENV
-        #echo "CLIENT_SECRET=$CLIENT_SECRET" >> $GITHUB_ENV
+        echo "CLIENT_ID=$CLIENT_ID" >> $GITHUB_ENV
+        echo "CLIENT_SECRET=$CLIENT_SECRET" >> $GITHUB_ENV
         ./wizcli auth --id "$WIZ_CLIENT_ID" --secret "$WIZ_CLIENT_SECRET"
 
     - name: Run wiz-cli directory scan
