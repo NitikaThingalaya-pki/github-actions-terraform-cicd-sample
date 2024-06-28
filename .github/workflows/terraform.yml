@@ -45,11 +45,16 @@ jobs:
     - name: Download Wiz CLI
       run: curl -o wizcli https://downloads.wiz.io/wizcli/latest/wizcli-linux-amd64 && chmod +x wizcli
 
-    - name: Authenticate to Wiz
-      run: ./wizcli auth --id "$WIZ_CLIENT_ID" --secret "$WIZ_CLIENT_SECRET"
-      env:
-        WIZ_CLIENT_ID: ${{ secrets.WIZ_CLIENT_ID }}
-        WIZ_CLIENT_SECRET: ${{ secrets.WIZ_CLIENT_SECRET }}
+    #- name: Authenticate to Wiz
+    #  run: ./wizcli auth --id "$WIZ_CLIENT_ID" --secret "$WIZ_CLIENT_SECRET"
+    - name: Retrieve secrets from AWS SSM
+      id: get-secrets
+      run: |
+        CLIENT_ID=$(aws ssm get-parameter --name "/CodeBuild/WIZ_CLIENT_ID" --with-decryption --query "Parameter.Value" --output text)
+        CLIENT_SECRET=$(aws ssm get-parameter --name "/CodeBuild/WIZ_CLIENT_SECRET" --with-decryption --query "Parameter.Value" --output text)
+        #echo "CLIENT_ID=$CLIENT_ID" >> $GITHUB_ENV
+        #echo "CLIENT_SECRET=$CLIENT_SECRET" >> $GITHUB_ENV
+        ./wizcli auth --id "$WIZ_CLIENT_ID" --secret "$WIZ_CLIENT_SECRET"
 
     - name: Run wiz-cli directory scan
       run: ./wizcli dir scan --path .
