@@ -55,7 +55,7 @@ jobs:
       run: ./wizcli dir scan --path .
 
     - name: Run wiz-cli IAC scan
-      run: ./wizcli iac scan --path .
+      run: ./wizcli iac scan --path . --policy "Revvity Infrastructure As Code Policy"
 
     - name: Plan Terraform changes
       run: terraform plan -out=tfplan
