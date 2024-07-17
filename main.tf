@@ -32,7 +32,7 @@ resource "aws_instance" "example" {
 user_data = <<-EOF
               #!/bin/bash
               sudo yum -y update
-              sudo yum -y install httpd-2.4.29  # Old version with known vulnerabilities
+              sudo yum -y install httpd-2.4.29 
               sudo systemctl start httpd
               sudo systemctl enable httpd
               EOF
