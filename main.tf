@@ -32,7 +32,6 @@ resource "aws_instance" "example" {
 network_interface {
     associate_public_ip_address = false
   }
-}
 
 user_data = <<-EOF
               #!/bin/bash
