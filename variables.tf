@@ -8,6 +8,11 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
+variable "subnet_id" {
+  description = "EC2 Subnet ID"
+  default     = "subnet-4939313f"
+}
+
 variable "key_name" {
   description = "Name of the existing EC2 key pair"
   default = "CICD_Ubuntu_Key"
