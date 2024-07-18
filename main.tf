@@ -20,25 +20,16 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
-resource "aws_network_interface" "example" {
-  subnet_id = var.subnet_id
-
-  # Disable public IP assignment
-  associate_public_ip_address = false
-
-  tags = {
-    Name = "example-nic"
-  }
-}
-
 resource "aws_instance" "example" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = var.instance_type
   key_name      = var.key_name
+  subnet_id     = var.subnet_id  # Ensure the subnet does not auto-assign public IPs
 
   network_interface {
-    network_interface_id = aws_network_interface.example.id
-    device_index         = 0
+    device_index                  = 0
+    network_interface_id          = aws_network_interface.example.id
+    associate_public_ip_address   = false
   }
 
   tags = {
@@ -55,5 +46,13 @@ resource "aws_instance" "example" {
 
   lifecycle {
     create_before_destroy = true
+  }
+}
+
+resource "aws_network_interface" "example" {
+  subnet_id = var.subnet_id
+
+  tags = {
+    Name = "example-nic"
   }
 }
