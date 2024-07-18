@@ -24,13 +24,7 @@ resource "aws_instance" "example" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = var.instance_type
   key_name      = var.key_name
-  subnet_id     = var.subnet_id  # Ensure the subnet does not auto-assign public IPs
-
-  network_interface {
-    device_index                  = 0
-    network_interface_id          = aws_network_interface.example.id
-    associate_public_ip_address   = false
-  }
+  associate_public_ip_address = "false"
 
   tags = {
     Name = var.name
@@ -46,13 +40,5 @@ resource "aws_instance" "example" {
 
   lifecycle {
     create_before_destroy = true
-  }
-}
-
-resource "aws_network_interface" "example" {
-  subnet_id = var.subnet_id
-
-  tags = {
-    Name = "example-nic"
   }
 }
