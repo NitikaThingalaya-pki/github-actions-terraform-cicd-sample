@@ -29,17 +29,19 @@ resource "aws_instance" "example" {
     Name = var.name
   }
 
-network_interface {
-    associate_public_ip_address = false
-  }
-
-user_data = <<-EOF
+  user_data = <<-EOF
               #!/bin/bash
               sudo yum -y update
-              sudo yum -y install httpd-2.4.29 
+              sudo yum -y install httpd
               sudo systemctl start httpd
               sudo systemctl enable httpd
               EOF
+
+  network_interface {
+    device_index = 0
+    subnet_id = var.subnet_id  # Make sure to set this variable accordingly
+    associate_public_ip_address = false
+  }
 
   lifecycle {
     create_before_destroy = true
