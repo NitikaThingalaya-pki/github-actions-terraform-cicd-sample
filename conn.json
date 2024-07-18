@@ -3,5 +3,5 @@
 "value": "Data Source=198.54.12.94;Initial Catalog=test_api;User ID=642927326;Password=Test@Adm1n;Connect Timeout=300;",
 "UserName": "Testing",
 "PhoneNo": "2349875678"
- "EmailID": "testing@gmail.com" 
+// "EmailID": "testing@gmail.com" 
 }
