@@ -24,6 +24,7 @@ resource "aws_instance" "example" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = var.instance_type
   key_name      = var.key_name
+  ecs_associate_public_ip_address = "false"
 
   tags = {
     Name = var.name
@@ -37,10 +38,6 @@ resource "aws_instance" "example" {
               sudo systemctl enable httpd
               EOF
 
-  network_interface {
-    device_index = 0
-    associate_public_ip_address = false
-  }
 
   lifecycle {
     create_before_destroy = true
