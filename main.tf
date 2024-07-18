@@ -39,7 +39,6 @@ resource "aws_instance" "example" {
 
   network_interface {
     device_index = 0
-    subnet_id = var.subnet_id  # Make sure to set this variable accordingly
     associate_public_ip_address = false
   }
 
