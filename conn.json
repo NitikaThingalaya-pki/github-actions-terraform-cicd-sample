@@ -1,7 +1,16 @@
 {
-"add key": "Pas_DB_String",
-"value": "Data Source=198.54.12.94;Initial Catalog=test_api;User ID=642927326;Password=Test@Adm1n;Connect Timeout=300;",
-"UserName": "Testing",
-"PhoneNo": "2349875678",
-"EmailID": "testing@gmail.com" /*User email address is nothing@email.com*/
+  // Key for the database connection string
+  "add key": "Pas_DB_String",
+  
+  // Connection string with details like Data Source, Initial Catalog, User ID, Password, and Connect Timeout
+  "value": "Data Source=198.54.12.94;Initial Catalog=test_api;User ID=642927326;Password=Test@Adm1n;Connect Timeout=300;",
+  
+  // Username for the connection
+  "UserName": "Testing",
+  
+  // Contact phone number
+  "PhoneNo": "2349875678",
+  
+  // Contact email address 
+  // "EmailID": "testing@gmail.com"
 }
