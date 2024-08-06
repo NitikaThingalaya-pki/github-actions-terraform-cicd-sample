@@ -20,10 +20,15 @@ data "aws_ami" "amazon_linux" {
   }
 }
 
+data "aws_iam_role" "existing_role" {
+  name = var.aws_role
+}
+
 resource "aws_instance" "example" {
   ami           = data.aws_ami.amazon_linux.id
   instance_type = var.instance_type
   key_name      = var.key_name
+  iam_instance_profile = data.aws_iam_role.existing_role.name
   associate_public_ip_address = "false"
 
   tags = {
