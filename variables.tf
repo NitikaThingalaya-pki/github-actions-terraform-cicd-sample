@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "aws_role" {
   description = "AWS Role"
-  default     = "sentinelone-installer-agents-role"
+  default     = "sentinelone-installer-agents"
 }
 
 variable "instance_type" {
