@@ -30,7 +30,7 @@ resource "aws_instance" "example" {
     Name = var.name
   }
 
-  user_data = = file("install_agent.sh")
+  user_data = file("install_agent.sh")
 
   lifecycle {
     create_before_destroy = true
