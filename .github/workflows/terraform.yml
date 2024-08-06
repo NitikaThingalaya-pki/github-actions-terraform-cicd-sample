@@ -31,7 +31,7 @@ jobs:
     - name: Retrieve Wiz credentials from AWS Secrets Manager
       id: get-wiz-credentials
       run: |
-        WIZ_CREDS=$(aws secretsmanager get-secret-value --secret-id your-secret-id --query SecretString --output text)
+        WIZ_CREDS=$(aws secretsmanager get-secret-value --secret-id Wiz/CICD --query SecretString --output text)
         echo "$WIZ_CREDS" > wiz_creds.json
         export WIZ_CLIENT_ID=$(jq -r .wizClientId wiz_creds.json)
         export WIZ_CLIENT_SECRET=$(jq -r .wizClientSecret wiz_creds.json)
