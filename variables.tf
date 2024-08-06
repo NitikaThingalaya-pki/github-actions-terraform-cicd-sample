@@ -3,6 +3,11 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
+variable "aws_role" {
+  description = "AWS Role"
+  default     = "sentinelone-installer-agents-role"
+}
+
 variable "instance_type" {
   description = "EC2 instance type"
   default     = "t2.micro"
