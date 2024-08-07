@@ -34,8 +34,8 @@ jobs:
         WIZ_CREDS=$(aws secretsmanager get-secret-value --secret-id Wiz/CICD --query SecretString --output text)
         echo "Wiz credentials fetched: $WIZ_CREDS"
         echo "$WIZ_CREDS" > wiz_creds.json
-        export WIZ_CLIENT_ID=$(jq -r .wizClientId wiz_creds.json)
-        export WIZ_CLIENT_SECRET=$(jq -r .wizClientSecret wiz_creds.json)
+        export WIZ_CLIENT_ID=$(jq -r .WIZ_CLIENT_ID wiz_creds.json)
+        export WIZ_CLIENT_SECRET=$(jq -r .WIZ_CLIENT_SECRET wiz_creds.json)
         echo "WIZ_CLIENT_ID=${WIZ_CLIENT_ID}" >> $GITHUB_ENV
         echo "WIZ_CLIENT_SECRET=${WIZ_CLIENT_SECRET}" >> $GITHUB_ENV
         echo "WIZ_CLIENT_ID: ${WIZ_CLIENT_ID}"
