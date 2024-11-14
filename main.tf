@@ -41,3 +41,27 @@ resource "aws_instance" "example" {
     create_before_destroy = true
   }
 }
+
+resource "aws_security_group" "example_sg" {
+  name        = "example-sg"
+  description = "Security group allowing full access to a sensitive port"
+
+  ingress {
+    description = "Allow all traffic on port 22 (SSH) from any IP"
+    from_port   = 445             # Sensitive port (e.g., SSH or a database port)
+    to_port     = 445
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Full access (not recommended in production)
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"           # All protocols
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "example-sg"
+  }
+}
